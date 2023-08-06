@@ -64,15 +64,17 @@ function App() {
     };
 
     await axios.request(options).then(function (response) {
-      setData(response.data[0]);
-      message.success('Search successful!');
+      if(response.data.length===1){
+        setData(response.data[0]);
+        message.success('Search successful!');
+      }else{
+        message.error('Enter Valid Country name');
+      }
     }).catch(function (error) {
       console.error(error);
       message.error('Search failed');
     });
     setLoading(false);
-    console.log(text);
-    // console.log(response.data);
   }
   return (
 
